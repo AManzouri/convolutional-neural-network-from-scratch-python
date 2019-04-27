@@ -82,6 +82,7 @@ def download_and_parse_mnist_file(fname, target_dir=None, force=False):
 
 
 def train_images():
+    print("hi")
     return download_and_parse_mnist_file('DigitDB.zip')
 
 
