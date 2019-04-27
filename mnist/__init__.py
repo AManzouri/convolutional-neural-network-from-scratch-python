@@ -65,6 +65,7 @@ def print_download_progress(count, block_size, total_size):
 
 
 def download_and_parse_mnist_file(fname, target_dir=None, force=False):
+    print("Error2")
     if not os.path.exists(DATASET_DIRECTORY):
         os.makedirs(DATASET_DIRECTORY)
     if not os.path.exists(DATASET_DIRECTORY+fname):
