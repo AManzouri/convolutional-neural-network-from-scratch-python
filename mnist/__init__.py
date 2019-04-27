@@ -23,17 +23,20 @@ def parse_idx(fd):
     header = fd.read(4)
     if len(header) != 4:
         raise IdxDecodeError('Invalid IDX file, file empty or does not contain a full header.')
+        print('Error1')
 
     zeros, data_type, num_dimensions = struct.unpack('>HBB', header)
 
     if zeros != 0:
         raise IdxDecodeError('Invalid IDX file, file must start with two zero bytes. '
                              'Found 0x%02x' % zeros)
+        print('Error2')
 
     try:
         data_type = DATA_TYPES[data_type]
     except KeyError:
         raise IdxDecodeError('Unknown data type 0x%02x in IDX file' % data_type)
+        print('Error3')
 
     dimension_sizes = struct.unpack('>' + 'I' * num_dimensions,
                                     fd.read(4 * num_dimensions))
@@ -45,6 +48,7 @@ def parse_idx(fd):
     if len(data) != expected_items:
         raise IdxDecodeError('IDX file has wrong number of items. '
                              'Expected: %d. Found: %d' % (expected_items, len(data)))
+        print('Error4')
 
     return np.array(data).reshape(dimension_sizes)
 
